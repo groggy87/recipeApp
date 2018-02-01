@@ -1,0 +1,159 @@
+/* responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+* {
+    font-family:'Open Sans', sans-serif;
+}
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.content {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+.inline{
+    display: inline-block;
+}
+.hidden_container{
+    display: none;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+
+body{
+	background-color: #ECECEC;
+}
+.recipe_title{
+	width: 60%;
+	line-height: 1.25; 
+	margin: 0 0 10px; 
+	font-size: 40px; 
+	font-weight: bold;
+	text-align: center;
+}
+.recipe_container{
+    width: 60%;
+    height: 100%;
+    border:0px;
+    display: flex;
+    justify-content: center;    /* Add this */
+    flex-flow: wrap;
+    flex-direction: row;
+}
+.recipe_subtitle{
+  width: 100%;
+  display: flex;
+}
+.recipe_subtitle div{
+	width:50%;
+	cursor: pointer;
+	padding:15px;
+}
+.recipe_subtitle div:hover{
+	background-color: #FFFA72;
+}
+.recipe_subtitle div:focus{
+	background-color: #FFCF72;
+	outline: none;
+}
+.method{
+	border: 1px solid #578AFF;
+	border-right: 0px;
+	border-top-left-radius: 5px; 
+}
+.ingredients{
+	border: 1px solid #578AFF;
+	border-top-right-radius: 5px; 
+}
+.display_none{
+	display: none;
+}
+.recipe{
+	border: 1px solid #578AFF;
+	border-top: 0px;
+	border-bottom-right-radius: 5px; 	
+	border-bottom-left-radius: 5px; 	
+	background-color: #E8F1FF;
+	width:100%;
+	padding:15px;
+}
+.search_container{
+	display: flex;
+	flex-direction: column;
+}
+.no_results_found{
+    width: 80%;	
+    background-color: #E4EBFF;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.recipe_links a, .recipe_links a:visited, .recipe_links a:hover, .recipe_links a:active{
+	position:relative;
+  	transition:0.5s color ease;
+	text-decoration:none;
+	color:#50748B;
+	font-size:1.5em;
+}
+.recipe_links a:hover{
+	color:#d73444;
+}
+.recipe_links a:after{
+  -webkit-transform:translateX(-50%);
+          transform:translateX(-50%);
+  background:#d73444;
+
+}
+.new_recipe_link {
+	margin-top: 20px;
+}
+.new_recipe_link a{
+	text-decoration:none;
+	color:#FF8A00;
+	font-size:1.5em;
+}
+.new_recipe_link a:hover{
+	color:#d73444;
+}
+.url_input{
+	width: 80%;
+}
+.url_container button{
+	width: 20%;
+}
+.url_input{
+	width: 80%;
+	margin-top:20px;
+}

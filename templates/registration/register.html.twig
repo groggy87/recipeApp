@@ -1,0 +1,27 @@
+{# templates/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+<link href="{{ asset('build/login.css') }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block sidebar %}
+  <a href="/login">Login</a>
+{% endblock %}
+
+{% block body %}
+	<div class="wrapper">
+{{ form_start(form, { 'attr': {'class': 'form-signin'} }) }}
+<h2 class="form-signin-heading">Register</h2>
+    {{ form_row(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'} }) }}
+    {{ form_row(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password'} }) }}
+    {{ form_row(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Repeat Password'} }) }}
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register!</button> 
+{{ form_end(form) }}
+</div>
+{% endblock %}
+{% block javascripts %}{# exclude javascript from register page #}{% endblock %}

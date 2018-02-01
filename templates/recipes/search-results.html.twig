@@ -1,0 +1,12 @@
+{# templates/blog/search-results.html.twig #}
+
+{% block body %}
+
+{% for recipe in search_results %}
+	<div class='recipe_links'>
+	<a href="">{{ recipe.name }}</a>
+	</div>
+{% endfor %}
+
+{% endblock %}
+

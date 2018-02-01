@@ -1,0 +1,12 @@
+{# templates/blog/url-results.html.twig #}
+
+{% block body %}
+<div class='url_results'>
+{% for value in data %}
+	<div>
+	{# can access any DOMElement properties here #}
+	{{ value.textContent }}
+	</div>
+{% endfor %}
+</div>
+{% endblock %}

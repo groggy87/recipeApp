@@ -1,0 +1,44 @@
+{# templates/recipes/new-recipe.html.twig #}
+{% extends 'base.html.twig' %}
+{% form_theme form 'forms/bootstrap_4_layout.html.twig' %}
+{% block title %}New Recipe{% endblock %}
+
+{% block body %}
+<div class="recipe_title">Add A Recipe...</div>
+
+<div id="form_container">
+
+{# add from internet - parse data from url 
+<input class="form-control url_input" type="url" id="url_input" placeholder="Enter recipe url">
+<input type="hidden" id="get_data_url" value="{{ path('get_recipe_from_url') }}">
+<button class="btn btn-secondary" onclick="getUrlData(url_input.value)">Find Recipe</button>
+
+<div id="get_data_results" contenteditable="true"></div> #}
+
+{# upload a recipe #}
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+	{{ form_row(form.name) }}
+	{{ form_row(form.ingredients) }}
+	{{ form_row(form.method) }}	
+	{{ form_row(form.recipeFile) }}
+
+    <h3>Images</h3>
+    <ul class="recipeImages" data-prototype="{{ form_widget(form.recipeImages.vars.prototype)|e('html_attr') }}">
+        {# iterate over each existing tag and render its only field: name #}
+        {% for image in form.recipeImages %}
+            <li>{{ form_row(image.recipeImageFile) }}</li>
+        {% endfor %}
+    </ul>
+	{{ form_row(form.save, { 'attr': {'class': 'btn btn-secondary'} }) }}
+{{ form_end(form, {'render_rest': false}) }}
+{# copy/pase into text field #}
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script src="{{ asset('build/recipe-image.js') }}"></script>
+{% endblock %}

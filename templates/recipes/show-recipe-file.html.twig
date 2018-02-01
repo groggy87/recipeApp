@@ -1,0 +1,27 @@
+{# templates/blog/show-recipe-file.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block body %}
+<div class="recipe_title">{{ recipe.title }}</div>
+
+<div class="">
+
+{# show file viewer + eventually with annotations #}
+{# https://symfony.com/doc/current/cmf/bundles/media/introduction.html #}
+<div>
+<a href="{{ path('download_recipe', {'id': recipe.id }) }}">Download recipe (PDF)</a>
+</div>
+{# twigs path helper #}
+<div>
+<a href="{{ path('recipe_edit', {'id': recipe.id }) }}">Edit Recipe</a>
+</div>
+</div>
+
+
+{# display recipe images, loop through however many #}
+{# export/print/share links #}
+
+
+{% endblock %}
+

@@ -1,0 +1,31 @@
+# config/packages/security.yaml
+security:
+    encoders:
+        App\Entity\User: bcrypt
+
+    providers:
+        database_users:
+            entity: { class: App\Entity\User, property: email }
+
+    firewalls:
+        secured_area:
+            pattern: ^/
+            anonymous: true
+            form_login:
+                check_path: login
+                login_path: login
+                default_target_path: recipe_list
+
+            logout:
+                path: security_logout
+                target: login
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                #always_remember_me: true
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

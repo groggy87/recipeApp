@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        <link href="{{ asset('build/recipe.css') }}" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body>
+    	<div class="sidebar">
+            {% block sidebar %}
+			  <a href="/recipes">Recipes</a>
+			  <a href="/logout">Logout</a>
+            {% endblock %}
+        </div>
+
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+        <script src="{{ asset('build/recipe.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

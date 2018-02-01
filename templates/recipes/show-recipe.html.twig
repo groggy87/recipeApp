@@ -1,0 +1,43 @@
+{# templates/blog/show-recipe.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block body %}
+<div class="recipe_title">{{ recipe.title }}</div>
+
+<div class="recipe_container">
+
+{# this works, just not needed rn
+{% for image in recipe.image %}
+	
+<picture>
+    <source srcset='{{ asset("images/smaller/#{image}") }}' media='(max-width: 768px)'>
+    <source srcset='{{ asset("images/#{image}") }}'>
+    <img srcset='{{ asset("images/#{image}") }}' alt='lasagna'>
+</picture>
+
+{% endfor %}
+#}
+
+<div class="recipe_subtitle">
+<div tabindex="0" class="method">Method</div>
+<div tabindex="-1" class="ingredients">Ingredients</div>
+</div>
+
+<div class="recipe">
+	<div id="method">{{ recipe.method|nl2br }}</div>
+	<div id="ingredients" class="display_none">{{ recipe.ingredients|nl2br }}</div>
+</div>
+
+{# twigs path helper #}
+<a href="{{ path('recipe_edit', {'id': recipe.id }) }}">Edit Recipe</a>
+</div>
+
+
+{# display recipe images, loop through however many #}
+{# export/print/share links #}
+
+
+{% endblock %}
+
+
