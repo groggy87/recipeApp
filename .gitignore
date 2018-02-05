@@ -16,5 +16,5 @@
 ###< symfony/webpack-encore-pack ###
 
 ###> user uploads folder ###
- public/uploads/recipes/*
+ /public/uploads/*
 ###> user uploads folder ###
