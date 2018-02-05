@@ -16,5 +16,5 @@
 ###< symfony/webpack-encore-pack ###
 
 ###> user uploads folder ###
- /public/uploads/*
+ /public/uploads/
 ###> user uploads folder ###
