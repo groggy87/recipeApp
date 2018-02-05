@@ -14,3 +14,7 @@
 /node_modules/
 /public/build/
 ###< symfony/webpack-encore-pack ###
+
+###> user uploads folder ###
+ public/uploads/recipes/
+###> user uploads folder ###
