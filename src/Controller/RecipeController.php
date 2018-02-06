@@ -167,7 +167,6 @@ class RecipeController extends Controller
      */
     public function delete($id)
     {
-        $id = 8;
 
         $em = $this->getDoctrine()->getManager();
         $recipe = $em->getRepository(Recipe::class)->find($id);
@@ -180,6 +179,8 @@ class RecipeController extends Controller
 
         $em->remove($recipe);
         $em->flush();
+
+        return $this->list();
     }
 
     /**
@@ -269,37 +270,6 @@ class RecipeController extends Controller
             $response = new JsonResponse ( $array, 400 );
             return $response;
         }
-    }
-
-    /**
-     * @Route("/recipes/getTemplate", name="get_template")
-     */
-    public function getTemplate(Request $request, FileUploader $fileUploader) {
-
-        $template = $request->request->get('template');
-
-        // create a task and give it some dummy data for this example
-        $recipe = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recipe);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // file upload should be handled by doctrine in src/EventListener/RecipeUploadListener.php
-            // persist recipe (insert it)
-            $em = $this->getDoctrine()->getManager();
-            //get original upload name
-
-            $em->persist($recipe);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('recipe_list'));
-        }
- 
-        return $this->render('forms/'.$template, array(
-            'form' => $form->createView(),
-        ));
     }
 
 }

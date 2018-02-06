@@ -1,6 +1,9 @@
 {# templates/blog/hashtag-results.html.twig #}
 {% extends 'base.html.twig' %}
+{% block title %}#recipes{% endblock %}
 {% block body %}
+
+<div class="recipe_title">#recipes on Twitter</div>
 
 {% for tweet in data.statuses %}
 	<blockquote class="twitter-tweet">
@@ -8,6 +11,7 @@
      <p class="tweet-author">{{ tweet.user.name }}</p>
      	<a href="#">@{{ tweet.user.screen_name }}</a>
      	<p class="tweet-link" onclick="window.open('https://twitter.com/statuses/{{ tweet.id_str }}')" target="_blank">{{ tweet.text }}</p>
+     	<p class="tweet-time">{{ tweet.created_at|date("F j, Y, g:i a") }}</p>
      </blockquote>
 {% endfor %}    
 
