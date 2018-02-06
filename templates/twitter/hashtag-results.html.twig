@@ -1,0 +1,14 @@
+{# templates/blog/hashtag-results.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% for tweet in data.statuses %}
+	<blockquote class="twitter-tweet">
+	<img src="{{ tweet.user.profile_image_url }}"></img>	
+     <p class="tweet-author">{{ tweet.user.name }}</p>
+     	<a href="#">@{{ tweet.user.screen_name }}</a>
+     	<p class="tweet-link" onclick="window.open('https://twitter.com/statuses/{{ tweet.id_str }}')" target="_blank">{{ tweet.text }}</p>
+     </blockquote>
+{% endfor %}    
+
+{% endblock %}

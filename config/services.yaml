@@ -30,6 +30,16 @@ services:
     GetDataFromUrl:
         class: App\Utils\GetDataFromUrl
 
+    GuzzleTest:
+        class: App\Utils\GuzzleTest
+
+    App\Utils\TwitterApi:
+        arguments:
+            $consumerKey: '%env(CONSUMER_KEY)%'
+            $consumerSecret: '%env(CONSUMER_SECRET)%'
+            $token: '%env(TOKEN)%'
+            $tokenSecret: '%env(TOKEN_SECRET)%'
+
     App\Service\FileUploader:
         arguments:
             $targetDir: '%recipes_directory%'

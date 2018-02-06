@@ -1,0 +1,11 @@
+{# templates/blog/tweet-results.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% for value in data %}
+
+    <div class="twitter-timeline">{{ value.text }}</div>
+
+{% endfor %}    
+
+{% endblock %}

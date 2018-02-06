@@ -1,5 +1,5 @@
 <?php
-// src/Controller/BlogController.php
+// src/Controller/RecipeController.php
 namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -301,4 +301,5 @@ class RecipeController extends Controller
             'form' => $form->createView(),
         ));
     }
+
 }

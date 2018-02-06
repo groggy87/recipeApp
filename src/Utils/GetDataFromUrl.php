@@ -4,7 +4,7 @@ namespace App\Utils;
 use \DOMDocument;
 use Symfony\Component\DomCrawler\Crawler;
 /**
-* This class is used to parse and filter data from a given url 
+* This class is used to parse and filter data from a given url - uses curl. see Guzzle for alternative API consumption
 */
 class GetDataFromUrl 
 {
