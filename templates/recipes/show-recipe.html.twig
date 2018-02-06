@@ -7,17 +7,16 @@
 
 <div class="recipe_container">
 
-{# this works, just not needed rn
-{% for image in recipe.image %}
+{% for image in recipe.images %}
 	
 <picture>
-    <source srcset='{{ asset("images/smaller/#{image}") }}' media='(max-width: 768px)'>
-    <source srcset='{{ asset("images/#{image}") }}'>
-    <img srcset='{{ asset("images/#{image}") }}' alt='lasagna'>
+    <source srcset='{{ asset("uploads/recipes/#{image}") }}' media='(max-width: 768px)'>
+    <source srcset='{{ asset("uploads/recipes/#{image}") }}'>
+    <img srcset='{{ asset("uploads/recipes/#{image}") }}' alt='{{ recipe.title }}'>
 </picture>
 
 {% endfor %}
-#}
+
 
 <div class="recipe_subtitle">
 <div tabindex="0" class="method">Method</div>

@@ -25,7 +25,7 @@ class RecipeController extends Controller
      */
     public function home()
     {
-        return $this->list();
+        return $this->redirectToRoute('recipe_list');
     }
     /**
      * @Route("/recipes", name="recipe_list")
@@ -63,10 +63,19 @@ class RecipeController extends Controller
             $recipe_arr = array(
                             'id' => $id
                             ,'title' => $recipe->getName()
-                            ,'image' => array('lasagna.jpg', 'lasagna-dish.jpg')
                             ,'method' => $recipe->getMethod()
                             , 'ingredients' => $recipe->getIngredients()
                             ); 
+
+            $recipeImages = $this->getDoctrine()
+            ->getRepository(RecipeImage::class)
+            ->findRecipeImages($id);
+
+            $img_arr = array();
+            foreach ($recipeImages as $recipeImage) {
+                $img_arr[] = basename($recipeImage->getRecipeImageFile());
+            }
+            $recipe_arr['images'] = $img_arr;
 
             //if has file load file viwer
             if($recipe->getRecipeFile() != null){
@@ -180,7 +189,7 @@ class RecipeController extends Controller
         $em->remove($recipe);
         $em->flush();
 
-        return $this->list();
+        return $this->redirectToRoute('recipe_list');
     }
 
     /**
