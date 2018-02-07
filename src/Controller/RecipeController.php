@@ -126,8 +126,10 @@ class RecipeController extends Controller
 
             return $this->show($recipe->getId());
         }
+        //pass in edit or new mode and replace title on template 
         return $this->render('recipes/add-edit-recipe.html.twig', array(
                 'form' => $form->createView(),
+                'mode' => 'New',
         ));  
 
     }
@@ -166,6 +168,7 @@ class RecipeController extends Controller
 
         return $this->render('recipes/add-edit-recipe.html.twig', array(
             'form' => $form->createView(),
+            'mode' => 'Edit',
         ));                
 
 

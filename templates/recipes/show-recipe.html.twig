@@ -3,7 +3,7 @@
 {% block title %}{{ recipe.title }}{% endblock %}
 
 {% block body %}
-<div class="recipe_title">{{ recipe.title }}</div>
+<div class="title">{{ recipe.title }}</div>
 
 <div class="recipe_container">
 
@@ -29,13 +29,10 @@
 </div>
 
 {# twigs path helper #}
-<a href="{{ path('recipe_edit', {'id': recipe.id }) }}">Edit Recipe</a>
+<a href="{{ path('recipe_edit', {'id': recipe.id }) }}" class="edit_link">Edit Recipe</a>
 </div>
 
-
-{# display recipe images, loop through however many #}
-{# export/print/share links #}
-
+{# TODO: export/print/share links #}
 
 {% endblock %}
 

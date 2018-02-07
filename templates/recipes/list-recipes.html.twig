@@ -1,16 +1,16 @@
 {# templates/blog/list-recipes.html.twig #}
 {# https://designshack.net/articles/css/5-simple-and-practical-css-list-styles-you-can-copy-and-paste/ #}
 {% extends 'base.html.twig' %}
-{% block title %}Recipe Listings{% endblock %}
+{% block title %}My Recipes{% endblock %}
 
 {% block body %}
-<div class="recipe_title">Recipe Listings</div>
+<div class="title">My Recipes</div>
 
 <div class="search_container">
 {# TODO: Add in filters - meals, chefs, tags (these would all need to go into the database, add meta data field #}
-<input type="text" placeholder="Search Recipes" id="search_term">
+<input type="text" placeholder="Search Recipes" id="search_term" class="form-control">
 <input type="hidden" id="search_url" value="{{ path('recipe_search') }}">
-<button onclick="searchRecipes(search_term.value)">Search Recipes</button>
+<button onclick="searchRecipes(search_term.value)" class="btn btn-primary">Search Recipes</button>
 
 {# recipe search results replace this block #}
 <div id='search_results'>
@@ -33,7 +33,7 @@
 </div>
 
 {# currently just adds lasagna recipe #}
-<div class="new_recipe_link"><a href="recipes/newrecipe">Add New Recipe...</a></div>
+<div class="new_recipe_link"><a href="recipes/newrecipe">New Recipe...</a></div>
 
 </div>
 

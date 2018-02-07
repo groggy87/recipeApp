@@ -1,10 +1,10 @@
 {# templates/recipes/new-recipe.html.twig #}
 {% extends 'base.html.twig' %}
 {% form_theme form 'forms/bootstrap_4_layout.html.twig' %}
-{% block title %}New Recipe{% endblock %}
+{% block title %}{{ mode }} Recipe{% endblock %}
 
 {% block body %}
-<div class="recipe_title">Add A Recipe...</div>
+<div class="title">{{ mode }} Recipe</div>
 
 <div id="form_container">
 
