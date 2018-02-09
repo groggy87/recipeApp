@@ -153,6 +153,12 @@ img {
   margin:0 auto; 
   color: #000000; 
 }
+#form_container label{
+  color: #ECECEC; 
+}
+#form_container h3{
+  color: #ECECEC; 
+}
 #form_container input {
   background: rgba(230, 230, 230, 0.7);
 }
