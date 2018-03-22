@@ -1,7 +1,7 @@
 # recipeApp
 Project using Symfony 4
 
-![alt text](https://github.com/groggy87/recipeApp/tree/master/public/images/SymRecipeApp.gif "Preview")
+![Preview Missing](https://github.com/groggy87/recipeApp/blob/master/public/images/SymRecipeApp.gif)
 
 create your own database and configure connections in .env 
 
