@@ -18,10 +18,10 @@ class RecipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        	->add('name', TextType::class, array('label' => 'Name', 'required' => false))
+        	->add('name', TextType::class, array('label' => 'Name', 'required' => true))
         	->add('method', TextareaType::class, array('label' => 'Method', 'required' => false, 'attr' => array('style' => 'height: 180px')))
         	->add('ingredients', TextareaType::class, array('label' => 'Ingredients', 'required' => false, 'attr' => array('style' => 'height: 180px')))
-            ->add('recipeFile', FileType::class, array('label' => 'Recipe (PDF file)', 'required' => false))
+            ->add('recipeFile', FileType::class, array('label' => 'Recipe (PDF or image file)', 'required' => false))
             ->add('recipeImages', CollectionType::class, array('entry_type' => RecipeImageType::class, 
             'entry_options' => array('label' => false),
             'allow_add' => true, 'by_reference' => false, 'allow_delete' => true))

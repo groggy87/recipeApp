@@ -80,9 +80,17 @@ class RecipeController extends Controller
             //if has file load file viwer
             if($recipe->getRecipeFile() != null){
 
-                return $this->render('recipes/show-recipe-file.html.twig', array(
-                    'recipe' => $recipe_arr,
-                ));  
+                $recipe_arr['filename'] = basename($recipe->getRecipeFile());
+                if(pathinfo($recipe->getRecipeFile(), PATHINFO_EXTENSION) == "pdf"){
+                    return $this->render('recipes/show-recipe-file.html.twig', array(
+                        'recipe' => $recipe_arr,
+                    )); 
+                }
+                else{
+                    return $this->render('recipes/show-recipe-image.html.twig', array(
+                        'recipe' => $recipe_arr,
+                    )); 
+                }
             }
             else
             {
@@ -154,6 +162,8 @@ class RecipeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            //TODO: look into book with persisting blank file inputs 
+             
             //get original upload name
             foreach ($recipe->getRecipeImages() as $image) {
                 $image->setRecipeId($id);

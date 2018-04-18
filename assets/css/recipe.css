@@ -1,3 +1,10 @@
+body, html {
+  width: 100%; 
+  height: 100%; 
+  margin: 0; 
+  padding: 0;
+}
+
 body {
   /* Location of the image */
   background-image: url(/images/wine2.jpg);
@@ -59,6 +66,7 @@ img {
 .content {
     margin-left: 160px; /* Same as the width of the sidebar */
     padding: 0px 10px;
+    
     /* gives opacity effect to background image without affecting child divs*/
     background: rgba(150, 150, 150, 0.2);
 }
@@ -95,6 +103,9 @@ img {
 .edit_link{
   text-decoration:none;
   color:#FFB55D; 
+  display: inline-block;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .edit_link:hover{
   text-decoration:none;
@@ -294,4 +305,17 @@ blockquote.twitter-tweet .twiiter-logo{
   float: right;
   max-width: 50px;
   padding: 4px;
+}
+/*recipe download*/
+.download-options{
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+iframe {
+    display: block;
+    background: #000;
+    border: none;
+    height: calc(100vh - 30px);
+    width: 100%;
 }

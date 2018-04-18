@@ -20,6 +20,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -35,7 +36,7 @@ class Recipe
 
     /**
     * @ORM\Column(type="string", nullable=true)
-    * @Assert\File(mimeTypes={ "application/pdf" })
+    * @Assert\File(mimeTypes={ "application/pdf", "image/*" })
     */
     private $recipeFile = null;
 
