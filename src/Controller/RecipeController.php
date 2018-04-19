@@ -154,7 +154,10 @@ class RecipeController extends Controller
             throw $this->createNotFoundException(
                 'No recipe found for id '.$id
             );
-        }         
+        }
+
+        $existingFile = $recipe->getRecipeFile();
+        $existingFileName = $recipe->getOriginalFileName();     
 
         $form = $this->createForm(RecipeType::class, $recipe);
 
@@ -162,12 +165,17 @@ class RecipeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //TODO: look into book with persisting blank file inputs 
-             
+            //TODO: add method to actively remove existing images
             //get original upload name
             foreach ($recipe->getRecipeImages() as $image) {
                 $image->setRecipeId($id);
                 $em->persist($image);
+            }
+            //so existing files are not overwritten
+            //TODO: add method to actively remove existing file (via JS I reckon or checkbox beside existing filename)
+            $uploadedFile = $form["recipeFile"]->getData();
+            if($uploadedFile == null && $existingFile != null){
+                $recipe->setRecipeFile(basename($existingFile));
             }
 
             $em->persist($recipe);    
@@ -179,6 +187,8 @@ class RecipeController extends Controller
         return $this->render('recipes/add-edit-recipe.html.twig', array(
             'form' => $form->createView(),
             'mode' => 'Edit',
+            'existingFileName' => $existingFileName,
+            'recipeId' => $recipe->getId()
         ));                
 
 
@@ -292,6 +302,29 @@ class RecipeController extends Controller
             $response = new JsonResponse ( $array, 400 );
             return $response;
         }
+    }
+    /**
+     * @Route("/recipes/deleteFile/{id}", name="delete_file", requirements={"id"="\d+"})
+     */
+    public function deleteFile($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $recipe = $em->getRepository(Recipe::class)->find($id);
+
+        if (!$recipe) {
+            throw $this->createNotFoundException(
+                'No recipe found for id '.$id
+            );
+        }
+
+        $recipe->setRecipeFile(null);
+        $recipe->setOriginalFileName(null);
+        $em->flush();
+
+        return new Response(
+            'deleted'
+        );
+
     }
 
 }

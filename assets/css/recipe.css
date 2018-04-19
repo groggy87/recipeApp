@@ -319,3 +319,17 @@ iframe {
     height: calc(100vh - 30px);
     width: 100%;
 }
+
+#existingFile{
+  display: block;
+}
+#existingFile p{
+  color: #ABF0FF;
+  display: inline-block;
+}
+#existingFile span{
+  padding-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #FF9090;
+}

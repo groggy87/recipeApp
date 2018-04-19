@@ -21,7 +21,15 @@
 	{{ form_row(form.name) }}
 	{{ form_row(form.ingredients) }}
 	{{ form_row(form.method) }}	
-	{{ form_row(form.recipeFile) }}
+    {{ form_row(form.recipeFile) }} 
+
+    {% if existingFileName != null %}
+        <div id="existingFile">
+        <p>Current File: {{ existingFileName }} <span class="glyphicon glyphicon-remove" onClick="deleteFile({{ recipeId }})" title="remove existing file"></span></p>
+        <input type="hidden" id="delete_file_url" value="{{ path('delete_file', {'id': recipeId }) }}">
+        </div>
+    {% endif %}
+	   
 
     <h3>Images</h3>
     <ul class="recipeImages" data-prototype="{{ form_widget(form.recipeImages.vars.prototype)|e('html_attr') }}">

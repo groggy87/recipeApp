@@ -24,7 +24,7 @@ class RecipeImage
 
     /**
     * @ORM\Column(type="string", nullable=true)
-    * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+    * @Assert\File(mimeTypes={ "image/*" })
     */
     private $recipeImageFile = null;
 

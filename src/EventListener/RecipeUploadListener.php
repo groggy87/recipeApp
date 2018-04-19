@@ -56,6 +56,7 @@ class RecipeUploadListener
 
         // only upload new files
         if ($file instanceof UploadedFile) {
+            //check for null files in controller so previous file isn't nulled
             $fileName = $this->uploader->upload($file);
             $originalfileName = $this->uploader->getOriginalFilename();
             $entity->setRecipeFile($fileName);
