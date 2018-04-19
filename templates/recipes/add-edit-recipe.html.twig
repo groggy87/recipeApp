@@ -19,8 +19,14 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
 	{{ form_row(form.name) }}
+    {% if existingFileName != null %}
+    <div id="method" style="display:none">
+    {% else %}
+    <div id="method">
+    {% endif %}
 	{{ form_row(form.ingredients) }}
 	{{ form_row(form.method) }}	
+    </div>
     {{ form_row(form.recipeFile) }} 
 
     {% if existingFileName != null %}

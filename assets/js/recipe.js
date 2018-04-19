@@ -16,13 +16,19 @@ $('.recipe_subtitle div').on('click', function(){
 
 $('#recipe_recipeFile').on('change', function(){ 
 
-	if($('#existingFile').length > 0){
+
 		if($(this).val() != ""){
-			$('#existingFile').hide();
+			if($('#existingFile').length > 0){
+				$('#existingFile').hide();
+			}
+			$('#method').hide();
+			//hide form above
 		}else{
-			$('#existingFile').show();
+			if($('#existingFile').length > 0){
+				$('#existingFile').show();
+			}
+			$('#method').show();
 		}		
-	}
 	
 });
 
@@ -40,6 +46,7 @@ deleteFile = function(id) {
 		        	if(response == 'deleted'){
 
 		        		$('#existingFile').hide();
+		        		$('#method').show();
 		        	}
 		    }});
 	}	
