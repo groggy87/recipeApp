@@ -19,7 +19,7 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
 	{{ form_row(form.name) }}
-    {% if existingFileName != null %}
+    {% if existingFileName is defined and existingFileName != null %}
     <div id="method" style="display:none">
     {% else %}
     <div id="method">
@@ -29,8 +29,8 @@
     </div>
     {{ form_row(form.recipeFile) }} 
 
-    {% if existingFileName != null %}
-        <div id="existingFile">
+    {% if existingFileName is defined and existingFileName != null %}
+        <div id="existingFile" class="existing">
         <p>Current File: {{ existingFileName }} <span class="glyphicon glyphicon-remove" onClick="deleteFile({{ recipeId }})" title="remove existing file"></span></p>
         <input type="hidden" id="delete_file_url" value="{{ path('delete_file', {'id': recipeId }) }}">
         </div>
@@ -44,6 +44,17 @@
             <li>{{ form_row(image.recipeImageFile) }}</li>
         {% endfor %}
     </ul>
+
+    {% if existingImages is defined and existingImages != null %}
+    <div id="existingImages" class="existing">
+        <p>Current Images:</p>
+        {% for id,image in existingImages %}
+            <input type="hidden" id="delete_image_url_{{ id }}" value="{{ path('delete_image', {'id': id }) }}">
+            <br><p id="image_{{ id }}">{{ image }}<span class="glyphicon glyphicon-remove" onClick="deleteImageFile({{ id }})" title="remove image"></span></p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
 	{{ form_row(form.save, { 'attr': {'class': 'btn btn-secondary'} }) }}
 {{ form_end(form, {'render_rest': false}) }}
 {# copy/pase into text field #}

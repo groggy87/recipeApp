@@ -16,7 +16,6 @@ $('.recipe_subtitle div').on('click', function(){
 
 $('#recipe_recipeFile').on('change', function(){ 
 
-
 		if($(this).val() != ""){
 			if($('#existingFile').length > 0){
 				$('#existingFile').hide();
@@ -39,17 +38,36 @@ deleteFile = function(id) {
 		//do ajax delete 
 		var path = $('#delete_file_url').val();
 		$.ajax({
-		        type:'POST',
-		        url: path,
-		        data: { id  : id },
-		        success: function(response) {
-		        	if(response == 'deleted'){
+	        type:'POST',
+	        url: path,
+	        data: { id  : id },
+	        success: function(response) {
+	        	if(response == 'deleted'){
 
-		        		$('#existingFile').hide();
-		        		$('#method').show();
-		        	}
-		    }});
+	        		$('#existingFile').hide();
+	        		$('#method').show();
+	        	}
+	    	}
+		});
 	}	
+}
+
+deleteImageFile = function(id) {
+	var result = confirm("Want to delete this image?");
+	if(result){
+		var path = $('#delete_image_url_'+id).val();
+		$.ajax({
+	        type:'POST',
+	        url: path,
+	        data: { id  : id },
+	        success: function(response) {
+	        	if(response == 'deleted'){
+
+	        		$('#image_'+id).hide();
+	        	}
+	    	}
+		});
+	}
 }
 
 getUrlData = function(url) {

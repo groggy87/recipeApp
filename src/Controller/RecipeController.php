@@ -122,11 +122,11 @@ class RecipeController extends Controller
             //get original upload name
 
             $em->persist($recipe);    
-             //we need to flush first in order to be able to retrieve the id of the saved recipe
-            $em->flush();
+            //  //we need to flush first in order to be able to retrieve the id of the saved recipe (old db config wasn't right)
+            // $em->flush();
 
             foreach ($recipe->getRecipeImages() as $image) {
-                $image->setRecipeId($recipe->getId());
+                $image->setRecipe($recipe);
                 $em->persist($image);
             }
             $em->flush();
@@ -157,7 +157,14 @@ class RecipeController extends Controller
         }
 
         $existingFile = $recipe->getRecipeFile();
-        $existingFileName = $recipe->getOriginalFileName();     
+        $existingFileName = $recipe->getOriginalFileName();
+
+        $img_arr = [];
+        if($recipe->getRecipeImages()){
+            foreach ($recipe->getRecipeImages() as $image) {
+                $img_arr[$image->getId()] = basename($image->getOriginalImageFileName());
+            }            
+        }
 
         $form = $this->createForm(RecipeType::class, $recipe);
 
@@ -168,7 +175,7 @@ class RecipeController extends Controller
             //TODO: add method to actively remove existing images
             //get original upload name
             foreach ($recipe->getRecipeImages() as $image) {
-                $image->setRecipeId($id);
+                $image->setRecipe($recipe);
                 $em->persist($image);
             }
             //so existing files are not overwritten
@@ -177,7 +184,6 @@ class RecipeController extends Controller
             if($uploadedFile == null && $existingFile != null){
                 $recipe->setRecipeFile(basename($existingFile));
             }
-
             $em->persist($recipe);    
             $em->flush();
         
@@ -188,7 +194,8 @@ class RecipeController extends Controller
             'form' => $form->createView(),
             'mode' => 'Edit',
             'existingFileName' => $existingFileName,
-            'recipeId' => $recipe->getId()
+            'recipeId' => $recipe->getId(),
+            'existingImages' => $img_arr
         ));                
 
 
@@ -327,4 +334,26 @@ class RecipeController extends Controller
 
     }
 
+    /**
+     * @Route("/recipes/deleteImage/{id}", name="delete_image", requirements={"id"="\d+"})
+     */
+    public function deleteImage($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $image = $em->getRepository(RecipeImage::class)->find($id);
+
+        if (!$image) {
+            throw $this->createNotFoundException(
+                'No image found for id '.$id
+            );
+        }
+
+        $em->remove($image);
+        $em->flush();
+
+        return new Response(
+            'deleted'
+        );
+
+    }
 }

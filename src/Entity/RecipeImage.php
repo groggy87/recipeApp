@@ -16,9 +16,7 @@ class RecipeImage
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe", inversedBy="id", cascade={"persist"}))
-     * @ORM\Column(type="integer")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $recipeId;
 
@@ -32,7 +30,23 @@ class RecipeImage
      * @ORM\Column(type="string", length=2500, nullable=true)
      */
     private $originalImageFileName = null;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe", inversedBy="recipeImages", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recipe;
 
+    public function getRecipe(): ?Recipe
+    {
+        return $this->recipe;
+    }
+
+    public function setRecipe(?Recipe $recipe): self
+    {
+        $this->recipe = $recipe;
+
+        return $this;
+    }
 
     public function getId()
     {

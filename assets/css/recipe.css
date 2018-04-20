@@ -320,16 +320,20 @@ iframe {
     width: 100%;
 }
 
-#existingFile{
+.existing{
   display: block;
 }
-#existingFile p{
+.existing p{
   color: #ABF0FF;
   display: inline-block;
 }
-#existingFile span{
+.existing span{
   padding-left: 10px;
   display: inline-block;
   vertical-align: middle;
   color: #FF9090;
+}
+.debug{
+  float:right;
+  color: white;
 }

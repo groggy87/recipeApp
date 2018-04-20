@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeRepository")
  */
@@ -14,7 +15,6 @@ class Recipe
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\RecipeImage", mappedBy="recipeId", orphanRemoval=true)
      */
     private $id;
 
@@ -44,14 +44,15 @@ class Recipe
      * @ORM\Column(type="string", length=2500, nullable=true)
      */
     private $originalFileName = null;
-
-    protected $recipeImages = null;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RecipeImage", mappedBy="recipe")
+     */
+    private $recipeImages;
 
     public function __construct()
     {
         $this->recipeImages = new ArrayCollection();
     }
-
     public function getId()
     {
         return $this->id;
@@ -106,8 +107,10 @@ class Recipe
     {
         $this->originalFileName = $originalFileName;
     }
-
-    public function getRecipeImages()
+    /**
+     * @return Collection|RecipeImage[]
+     */
+    public function getRecipeImages(): Collection
     {
         return $this->recipeImages;
     }
