@@ -324,16 +324,30 @@ iframe {
   display: block;
 }
 .existing p{
-  color: #ABF0FF;
+  color: #DEF9FF;
   display: inline-block;
+}
+.current{
+  color: #ABF0FF;
 }
 .existing span{
   padding-left: 10px;
   display: inline-block;
   vertical-align: middle;
   color: #FF9090;
+  cursor: pointer;
 }
 .debug{
   float:right;
   color: white;
+}
+.btn-primary{
+  color: white!important;
+}
+.add_image_link{
+  color: #D8D8D8;
+}
+.add_image_link:hover{
+  text-decoration: none;
+  color: #FFFFFF;
 }

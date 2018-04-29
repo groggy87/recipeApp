@@ -16,6 +16,17 @@
 
 </div>	
 
+{% if recipe.images %}
+	{% for image in recipe.images %}
+
+	<picture>
+	    <source srcset='{{ asset("uploads/recipes/#{image}") }}' media='(max-width: 768px)'>
+	    <source srcset='{{ asset("uploads/recipes/#{image}") }}'>
+	    <img srcset='{{ asset("uploads/recipes/#{image}") }}' alt='{{ recipe.title }}'>
+	</picture>
+
+	{% endfor %}
+{% endif %}
 
 <iframe src="{{ asset('bundles/jjalvarezlpdfjsviewer/web/viewer.html') }}?file={{ asset('uploads/recipes/' ~ recipe.filename) }}"/>
 

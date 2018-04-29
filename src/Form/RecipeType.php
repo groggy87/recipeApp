@@ -24,9 +24,7 @@ class RecipeType extends AbstractType
             ->add('recipeFile', FileType::class, array('label' => 'Recipe (PDF or image file)', 'required' => false))
             ->add('recipeImages', CollectionType::class, array('entry_type' => RecipeImageType::class, 
             'entry_options' => array('label' => false),
-            'allow_add' => true, 'by_reference' => false, 'allow_delete' => true))
-            ->add('save', SubmitType::class, array('attr' => array('class' => 'save'),
-			));
+            'allow_add' => true, 'by_reference' => false, 'allow_delete' => true));
     }
 
     public function configureOptions(OptionsResolver $resolver)
